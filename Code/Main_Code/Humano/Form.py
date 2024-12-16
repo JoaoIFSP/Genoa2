@@ -3,7 +3,7 @@
 #    "Castanho": 8,  # Dominante
 #    "Preto": 4,     # Dominante
 #    "Verde": 2,     # Recessivo
-#    "Azul": 1       # Recessivo
+#    "Azul": 1       # Recessivo a a
     
 
 # Olhos
