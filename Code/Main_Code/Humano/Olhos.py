@@ -1,5 +1,6 @@
 import random
 from Form import Zigoto_Olho_Mae, Zigoto_Olho_Pai
+from Genero import Genero
 
 # Dicionário para mapear genes às cores
 Olho = {
@@ -8,28 +9,54 @@ Olho = {
     2: "Verde",     # Recessivo
     1: "Azul"       # Recessivo
 }
+Zigoto_Olho_Filho = [0, 0]
 
 # Função para determinar a cor dos olhos do filho com base nos genes dos pais
-def gerar_olhos_filho(Zigoto_Olho_Mae, Zigoto_Olho_Pai):
+def gerar_olhos_filho(Zigoto_Olho_Mae, Zigoto_Olho_Pai, Zigoto_Olho_Filho):
     # Seleção aleatória de genes da mãe e do pai
-    gene_mae = random.choice(Zigoto_Olho_Mae)
-    gene_pai = random.choice(Zigoto_Olho_Pai)
+    Zigoto_Olho_Filho[0] = random.choice(Zigoto_Olho_Mae)
+    Zigoto_Olho_Filho[1] = random.choice(Zigoto_Olho_Pai)
 
     # Soma dos genes para determinar a cor
-    soma_olhos = gene_mae + gene_pai
+    soma_olhos = Zigoto_Olho_Filho[0] + Zigoto_Olho_Filho[1]
 
     # Lógica de determinação da cor dos olhos com base na soma
     if soma_olhos == 12:  # Castanho e Preto juntos
         return random.choice(["Preto", "Castanho"]) 
-    elif soma_olhos in [10, 9]:  # Predominância de Castanho
+    elif soma_olhos in [16, 10, 9]:  # Predominância de Castanho
         return "Castanho"
-    elif soma_olhos in [6, 5]:  # Predominância de Preto
+    elif soma_olhos in [8, 6, 5]:  # Predominância de Preto
         return "Preto"
+    elif soma_olhos == 4:
+        return "Verde"
+    elif soma_olhos == 2:
+        return "Azul"
     elif soma_olhos == 3:  # Recessivos (Azul e Verde)
         return random.choice(["Verde", "Azul"])
     else:
         print(f"Erro: Soma inesperada ({soma_olhos}).")
         return "Indefinido"
 
-# Gerar a cor dos olhos do filho
+
+def conversor_olhos(Zigoto_Olho_Mae, Zigoto_Olho_Pai, Zigoto_Olho_Filho, Genero):
+    if Genero == "X":
+        Zigoto_Olho_Mae = Zigoto_Olho_Filho
+        Zigoto_Olho_Pai = [0, 0]
+        Zigoto_Olho_Pai[0] = random.choice(8, 4, 2, 1)
+        Zigoto_Olho_Pai[1] = random.choice(8, 4, 2, 1)
+        return Zigoto_Olho_Mae, Zigoto_Olho_Pai
+    elif Genero == "Y":
+        Zigoto_Olho_Pai = Zigoto_Olho_Filho
+        Zigoto_Olho_Mae = [0, 0]
+        Zigoto_Olho_Mae[0] = random.choice(8, 4, 2, 1)
+        Zigoto_Olho_Mae[1] = random.choice(8, 4, 2, 1)
+        return Zigoto_Olho_Pai, Zigoto_Olho_Mae
+    else:
+        print("?????????????")
+
+
+cor_olhos_filho = gerar_olhos_filho(Zigoto_Olho_Mae, Zigoto_Olho_Pai, Zigoto_Olho_Filho)
+conversor_olhos_var = conversor_olhos(Zigoto_Olho_Mae, Zigoto_Olho_Pai, Zigoto_Olho_Filho, Genero)
+
+    
 
