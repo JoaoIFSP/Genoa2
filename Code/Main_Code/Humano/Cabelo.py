@@ -1,33 +1,40 @@
 import random
 from Form import Zigoto_Cabelo_Mae, Zigoto_Cabelo_Pai
+from Genero import Genero, escolha_X_Y
 
 # Dicionário para mapear genes às cores
 Cabelo = {
-    8: "Moreno",    # Dominante
+    8: "Moreno",  # Dominante
     4: "Preto",     # Dominante
     2: "Loiro",     # Recessivo
-    1: "Ruivo"      # Recessivo
+    1: "Ruivo"       # Recessivo
 }
 
-# Função para determinar a cor dos Cabelo do filho com base nos genes dos pais
+# Função para gerar os Cabelo do filho
 def gerar_Cabelo_filho(Zigoto_Cabelo_Mae, Zigoto_Cabelo_Pai):
     # Seleção aleatória de genes da mãe e do pai
-    gene_mae = random.choice(Zigoto_Cabelo_Mae)
-    gene_pai = random.choice(Zigoto_Cabelo_Pai)
+    Zigoto_Cabelo_Filho = [0, 0]
+    Zigoto_Cabelo_Filho[0] = random.choice(Zigoto_Cabelo_Mae)
+    Zigoto_Cabelo_Filho[1] = random.choice(Zigoto_Cabelo_Pai)
 
     # Soma dos genes para determinar a cor
-    soma_Cabelo = gene_mae + gene_pai
+    soma_Cabelo = Zigoto_Cabelo_Filho[0] + Zigoto_Cabelo_Filho[1]
 
     # Lógica de determinação da cor dos Cabelo com base na soma
     if soma_Cabelo == 12:  # Castanho e Preto juntos
-        return random.choice(["Moreno", "Preto"]) 
-    elif soma_Cabelo in [10, 9]:  # Predominância de Castanho
-        return "Moreno"
-    elif soma_Cabelo in [6, 5]:  # Predominância de Preto
-        return "Preto"
+        cor = random.choice(["Moreno", "Preto"]) 
+    elif soma_Cabelo in [16, 10, 9]:  # Predominância de Castanho
+        cor = "Moreno"
+    elif soma_Cabelo in [8, 6, 5]:  # Predominância de Preto
+        cor = "Preto"
+    elif soma_Cabelo == 4:
+        cor = "Loiro"
+    elif soma_Cabelo == 2:
+        cor = "Ruivo"
     elif soma_Cabelo == 3:  # Recessivos (Azul e Verde)
-        return random.choice(["Loiro", "Ruivo"])
+        cor = random.choice(["Loiro", "Ruivo"])
     else:
         print(f"Erro: Soma inesperada ({soma_Cabelo}).")
-        return "Indefinido"
+        cor = "Indefinido"
 
+    return Zigoto_Cabelo_Filho, cor

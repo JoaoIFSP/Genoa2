@@ -49,7 +49,7 @@ Zigoto_Tipo_Cabelo_Pai = [4, 1] # Liso(A) / Crespo(A) / Cacheado(a) / Ondulado(a
 
 # Pele
 Zigoto_Pele_Mae = [8, 2] # Opções:
-Zigoto_Pele_Pai = [4, 2]  # Negro(A) / Branco(A) / Amarelo(a) / Pardo(a)
+Zigoto_Pele_Pai = [4, 1]  # Negro(A) / Branco(A) / Amarelo(a) / Pardo(a)
 # Fim
 
 # Nariz
